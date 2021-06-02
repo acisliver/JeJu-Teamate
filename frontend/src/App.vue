@@ -1,25 +1,28 @@
 <template>
   <div id="app">
+    <the-nav-bar/>
 
+    <the-view/>
 
+    <the-footer/>
   </div>
 </template>
 
 <script>
-import request from "request"
+import axios from "axios";
 
 export default {
   name: 'App',
   components: {
-
+    TheNavBar: () => import("@/router/layout/TheNavBar"),
+    TheView: () => import("@/router/layout/TheView"),
+    TheFooter: () => import("@/router/layout/TheFooter"),
   },
   methods: {
     helloApi() {
-      request('http://localhost:8080/api/hello', function (e, res, body){
-        console.log('error', e)
-        console.log('statusCode', res && res.statusCode)
-        console.log('body', body)
-      })
+      axios.get('http://localhost:8080/api/hello')
+      .then(res => console.log('body', res.data))
+      .catch(error => console.log('error', error))
     }
   },
   mounted() {
