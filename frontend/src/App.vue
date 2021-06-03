@@ -21,8 +21,8 @@ export default {
   methods: {
     helloApi() {
       axios.get('http://localhost:8080/api/hello')
-      .then(res => console.log('body', res.data))
-      .catch(error => console.log('error', error))
+          .then(res => console.log('body', res.data))
+          .catch(error => console.log('error', error))
     }
   },
   mounted() {
