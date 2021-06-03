@@ -1,10 +1,11 @@
 <template>
   <div class="the-nav-bar">
     <v-app-bar
-      color="teal lighten-3"
+      color="primary"
     >
-      <v-app-bar-nav-icon></v-app-bar-nav-icon>
-      <v-toolbar-title>Jeju Teammate</v-toolbar-title>
+      <v-app-bar-nav-icon class="white--text"></v-app-bar-nav-icon>
+      <v-toolbar-title>
+        <strong class="heading white--text">Jeju Teammate</strong></v-toolbar-title>
     </v-app-bar>
   </div>
 </template>

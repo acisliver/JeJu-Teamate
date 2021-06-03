@@ -1,11 +1,11 @@
 <template>
-  <div id="app">
+  <v-app>
     <the-nav-bar/>
 
     <the-view/>
 
     <the-footer/>
-  </div>
+  </v-app>
 </template>
 
 <script>
@@ -14,9 +14,9 @@ import axios from "axios";
 export default {
   name: 'App',
   components: {
-    TheNavBar: () => import("@/router/layout/TheNavBar"),
-    TheView: () => import("@/router/layout/TheView"),
-    TheFooter: () => import("@/router/layout/TheFooter"),
+    TheNavBar: () => import("./router/layout/TheNavBar"),
+    TheView: () => import("./router/layout/TheView"),
+    TheFooter: () => import("./router/layout/TheFooter"),
   },
   methods: {
     helloApi() {

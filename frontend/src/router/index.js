@@ -11,7 +11,14 @@ VueRouter.prototype.push = function push(location) {
   })
 };
 
-const routes = []
+const Home = () => import(/* webpackChunkName: "home" */ './views/Home')
+const routes = [
+  {
+    path: '/',
+    name: 'home',
+    component: Home
+  }
+]
 
 const router = new VueRouter({
   mode: 'history',
