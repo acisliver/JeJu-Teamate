@@ -10,7 +10,7 @@
           tile
       >
         <v-card-title class="secondary">
-          <strong class="subheading">Get connected with us on social networks!</strong>
+          <strong class="subheading">Get connected with us on SNS</strong>
 
           <v-spacer></v-spacer>
 
@@ -49,5 +49,10 @@ export default {
 </script>
 
 <style scoped>
-
+  .the-footer{
+    width: 100%;
+    /*하단고정*/
+    position: absolute;
+    bottom:0;
+  }
 </style>

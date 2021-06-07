@@ -1,6 +1,8 @@
 <template>
   <div class="the-view">
-    <router-view/>
+    <div class="container">
+      <router-view/>
+    </div>
   </div>
 </template>
 
@@ -11,5 +13,8 @@ export default {
 </script>
 
 <style scoped>
-
+  .container{
+    text-align: center;
+    justify-content: center;
+  }
 </style>
