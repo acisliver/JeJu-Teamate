@@ -21,7 +21,7 @@
           @click="clickReadBtn(board.id)"
       >
         <td class="text-left">{{ board.title }}</td>
-        <td class="text-right">{{ board.user.nickName }}</td>
+        <td class="text-right">{{ board.user.name }}</td>
         <!--        <td class="text-right">{{ board.writeTime}}</td>-->
       </tr>
       </tbody>
