@@ -3,6 +3,12 @@
     <v-card style="width: 20rem; margin: 5rem;">
       <v-card-text>
         <v-text-field
+            v-model="name"
+            :rules="[rules.requiredRule]"
+            label="이름"
+            required
+        ></v-text-field>
+        <v-text-field
             v-model="userName"
             :rules="[rules.requiredRule]"
             label="아이디"
@@ -54,7 +60,7 @@
         <v-btn
             color="primary"
             text
-            @click="signup({userName, password, role}), validatePassword({password, rePassword})"
+            @click="signup({name, userName, password, role})"
         >
           제출
         </v-btn>
@@ -65,11 +71,14 @@
 
 <script>
 import axios from "axios";
+axios.defaults.headers.post['Access-Control-Allow-Origin'] = '*';
+axios.defaults.headers.post["Access-Control-Allow-Methods"] =  "POST";
 
 export default {
   name: "SignUpView",
   data () {
     return {
+      name: null,
       userName: null,
       password: null,
       rePassword: null,
@@ -97,17 +106,16 @@ export default {
     }
   },
   methods: {
-    validatePassword(password, repassword){
-      if(password !==repassword){
-        return
-      }
-    },
+    // validatePassword(password, repassword){
+    //   if(password !==repassword){
+    //     return
+    //   }
+    // },
     signup(signupObj) {
-      console.log(signupObj)
-      axios
-          .post("/api/signup",signupObj)
+
+      axios.post("/api/sign-up",signupObj)
           .then(res => {
-            this.$router.push({ name: "Login"})
+            this.$router.push({ name: "login"})
             console.log(res.data)
           })
           .catch(err => {

@@ -1,12 +1,12 @@
 <template>
-  <div class="my-page-view">
-    <h2>마이페이지</h2>
+  <div class="team-management-view">
+    <h2>팀 관리</h2>
   </div>
 </template>
 
 <script>
 export default {
-  name: "MyPageView"
+  name: "TeamManagementView"
 }
 </script>
 
