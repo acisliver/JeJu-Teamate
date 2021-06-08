@@ -11,7 +11,7 @@
       <v-spacer/>
 
       <v-toolbar-items id="menu">
-        <router-link :to="{name: 'recruit-board'}" class="white--text">팀원 모집</router-link>
+        <router-link :to="{name: 'find-team'}" class="white--text">팀 찾기</router-link>
         <router-link :to="{name: 'register-team'}" class="white--text">팀 등록</router-link>
         <router-link :to="{name: 'login'}" class="white--text">로그인</router-link>
         <router-link :to="{name: 'sign-up'}" class="white--text">회원가입</router-link>
@@ -39,7 +39,7 @@ a {
   padding-left: 1rem;
 
   &.router-link-exact-active {
-     color: #1976d2;
+     color: rgba(53, 210, 25, 0.47);
    }
 }
 
