@@ -3,15 +3,9 @@
     <v-card style="width: 20rem; margin: 5rem;">
       <v-card-text>
         <v-text-field
-            v-model="name"
+            v-model="email"
             :rules="[rules.requiredRule]"
-            label="이름"
-            required
-        ></v-text-field>
-        <v-text-field
-            v-model="userName"
-            :rules="[rules.requiredRule]"
-            label="아이디"
+            label="이메일"
             required
         ></v-text-field>
         <v-text-field
@@ -37,8 +31,8 @@
             @click:append="isShow2 = !isShow2"
         ></v-text-field>
         <v-select
-            :items="roles"
-            v-model="role"
+            :items="jobs"
+            v-model="job"
             dense
             filled
             label="분야를 정해주세요"
@@ -60,7 +54,7 @@
         <v-btn
             color="primary"
             text
-            @click="signup({name, userName, password, role})"
+            @click="signup({email, password, job})"
         >
           제출
         </v-btn>
@@ -78,14 +72,13 @@ export default {
   name: "SignUpView",
   data () {
     return {
-      name: null,
-      userName: null,
+      email: null,
       password: null,
       rePassword: null,
       isShow1: false,
       isShow2: false,
-      roles: ["프로그래머", "디자이너", "기획자"],
-      role: null,
+      jobs: ["프로그래머", "디자이너", "기획자"],
+      job: null,
       rules: {
         requiredRule: v => !!v || '필수입력입니다.',
         maxCharRule: v => v.length <= 25 || '최대 25자 입니다',

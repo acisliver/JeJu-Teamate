@@ -77,6 +77,8 @@ export default {
             const statusOk = res.status
             if(statusOk === 200){
               console.log("성공")
+              localStorage.setItem("X-AUTH-TOKEN", res.headers("X-AUTH-TOKEN"))
+              this.$router.push({name: 'home'})
             }
             else if(statusOk === 204){
               this.failLogin = true
