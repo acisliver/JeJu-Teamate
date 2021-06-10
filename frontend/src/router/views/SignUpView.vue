@@ -105,7 +105,7 @@ export default {
     //   }
     // },
     signup(signupObj) {
-
+      console.log(signupObj)
       axios.post("/api/sign-up",signupObj)
           .then(res => {
             this.$router.push({ name: "login"})
