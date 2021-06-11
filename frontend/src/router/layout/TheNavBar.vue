@@ -100,7 +100,7 @@ export default {
   padding: 10px;
 
   &.router-link-exact-active {
-    color: #1976d2;
+    color: rgba(25, 210, 188, 0.51);
   }
 }
 

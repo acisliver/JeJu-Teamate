@@ -49,10 +49,5 @@ export default {
 </script>
 
 <style scoped>
-  .the-footer{
-    width: 100%;
-    /*하단고정*/
-    position: absolute;
-    bottom:0;
-  }
+
 </style>

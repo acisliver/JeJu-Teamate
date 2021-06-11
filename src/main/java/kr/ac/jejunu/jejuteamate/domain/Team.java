@@ -4,8 +4,10 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,8 +26,12 @@ public class Team {
     @Column(nullable = false, length = 100, unique = true)
     private String name;
 
+    @Column(nullable = false, length = 100)
+    private String intro;
+
     @OneToMany(mappedBy = "team")
     List<User> teammate = new ArrayList<>();
 
-
+    @CreationTimestamp
+    private Timestamp createDate;
 }
