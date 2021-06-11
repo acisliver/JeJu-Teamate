@@ -25,7 +25,8 @@ public class User implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    @Column(name = "USER_ID")
+    private long id;
 
     //아이디
     @Column(nullable = false, length = 100, unique = true)
@@ -36,6 +37,10 @@ public class User implements UserDetails {
 
     @Column(nullable = false, length = 100)
     private String job;
+
+    @ManyToOne
+    @JoinColumn(name = "TEAM_ID")
+    private Team team;
 
     @ElementCollection(fetch = FetchType.EAGER)
     @Builder.Default
