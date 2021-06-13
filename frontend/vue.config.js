@@ -9,6 +9,11 @@ module.exports = {
                 ws: true,
                 changedOrigin: true,
             },
+            '/login': {
+                target: 'http://localhost:9000',
+                ws: true,
+                changedOrigin: true,
+            }
         }
     },
 

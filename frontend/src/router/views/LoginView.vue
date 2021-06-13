@@ -15,7 +15,7 @@
         </v-toolbar>
         <div class="pa-3">
           <v-text-field
-              v-model="eamil"
+              v-model="email"
               label="이메일"
           >
           </v-text-field>
@@ -33,7 +33,7 @@
               large
               block
               class="mb-2"
-              @click="login({userName, password})"
+              @click="login({email, password})"
           >로그인
           </v-btn>
           <v-btn
@@ -72,12 +72,13 @@ export default {
   methods: {
     login(loginObj){
       console.log(loginObj)
-      axios.post("/api/login", loginObj)
+      axios.post("/login", loginObj)
           .then(res=>{
             const statusOk = res.status
             if(statusOk === 200){
               console.log("성공")
-              localStorage.setItem("X-AUTH-TOKEN", res.headers("X-AUTH-TOKEN"))
+              console.log(res)
+              localStorage.setItem("token", res.headers.token)
               this.$router.push({name: 'home'})
             }
             else if(statusOk === 204){

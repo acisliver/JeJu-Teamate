@@ -5,6 +5,7 @@ import kr.ac.jejunu.jejuteamate.dto.StatusDto;
 import kr.ac.jejunu.jejuteamate.dto.UserDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -40,8 +41,4 @@ public class UserController {
         return new StatusDto(HttpStatus.OK.value());
     }
 
-    //로그인
-//    public String login(@RequestBody Map<String, String> user){
-//
-//    }
 }

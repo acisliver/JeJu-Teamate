@@ -2,7 +2,7 @@ package kr.ac.jejunu.jejuteamate.config.security.jwt;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
-import kr.ac.jejunu.jejuteamate.config.security.user.AuthUser;
+import kr.ac.jejunu.jejuteamate.config.security.user.PrincipalDetails;
 import kr.ac.jejunu.jejuteamate.domain.User;
 import kr.ac.jejunu.jejuteamate.repository.UserRepository;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -51,14 +51,15 @@ public class JwtAuthotizationFilter extends BasicAuthenticationFilter {
         // 토큰 검증 (이게 인증이기 때문에 AuthenticationManager도 필요 없음)
         // 내가 SecurityContext에 집적접근해서 세션을 만들때 자동으로 UserDetailsService에 있는 loadByUsername이 호출됨.
         String email = JWT.require(Algorithm.HMAC512(jwtProperties.secretKey)).build().verify(jwtToken).
-                getClaim("userName").asString();
+                getClaim("email").asString();
+        System.out.println(email);
 
         if(email!=null){
             User user = userRepository.searchUserQuery(email);
 
             //username가 null이 아니기 때문에 정상 유저임
             //jwt토큰 서명을 통해 만든 Authentication의 객체
-            AuthUser authUser = new AuthUser(user);
+            PrincipalDetails authUser = new PrincipalDetails(user);
             Authentication authentication = new UsernamePasswordAuthenticationToken(authUser, null, authUser.getAuthorities());
 
             //강제로 security 세션에 접근하여 Authentication 저장

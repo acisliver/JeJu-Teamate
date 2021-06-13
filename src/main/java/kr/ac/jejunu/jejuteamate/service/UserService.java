@@ -19,8 +19,7 @@ public class UserService {
 
     @Transactional
     public User signUp(User user){
-        //비밀번호 인코딩
-        user.setPassword(encoder.encode(user.getPassword()));
+        user.setPassword(encoder.encode(user.getPassword())); //비밀번호 인코딩
         user.setRole(RoleType.USER);  //최초 가입시 권한 설정
         userRepository.save(user);
         return user;

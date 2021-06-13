@@ -3,7 +3,7 @@ package kr.ac.jejunu.jejuteamate.config.security.jwt;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import kr.ac.jejunu.jejuteamate.config.security.user.AuthUser;
+import kr.ac.jejunu.jejuteamate.config.security.user.PrincipalDetails;
 import kr.ac.jejunu.jejuteamate.dto.LoginRequestDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -23,10 +23,10 @@ import java.util.Date;
 //security에서 UsernamePasswordAuthenticationFilter가 있어서
 //login 요청시 해당 필터가 동작을 하여 로그인이 진행된다.
 //하지만 formLogin().disable()로 인해 form 로그인이 안된다.
-//즉, 토근을 사용하기 위해서는 formLogin().disable()이 필요로한데
+//즉, 토큰을 사용하기 위해서는 formLogin().disable()이 필요로한데
 //form을 통한 로그인이 안된다는 모순 발생
-//이를 해결하기 위해 SecurityConfig에다가
-// addFilter(new JwtAuthentication(authenticationManager()))을 추가해주면 됨
+//이를 해결하기 위해 WebSecurityConfig에다가
+//addFilter(new JwtAuthentication(authenticationManager()))을 추가해주면 됨
 //그러면 필터가 하나 더 추가하여 로그인시 진행되는 attemptAuthentication함수를 강제 실행시키면된다.
 
 //1. uesrname과 password를 받아서
@@ -39,6 +39,7 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 
     private final AuthenticationManager authenticationManager;
 
+    //로그인
     @Override
     public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response)
             throws AuthenticationException {
@@ -70,8 +71,8 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
         // Tip: 인증 프로바이더의 디폴트 암호화 방식은 BCryptPasswordEncoder
         // 결론은 인증 프로바이더에게 알려줄 필요가 없음.
         //principalDetailis에 정보가 있다는 것은 정상적으로 로그인 되었다느 뜻.
-        AuthUser authUser = (AuthUser) authentication.getPrincipal();
-        System.out.println("Authentication : "+authUser.getUser().getEmail());
+        PrincipalDetails authUser = (PrincipalDetails) authentication.getPrincipal();
+        System.out.println("Authentication : " + authUser.getUser().getEmail());
 
         //authentication를 세션에 저장(권한관리를 위해) 하기 위해 return한다.
         return authentication;
@@ -86,18 +87,18 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
                                             Authentication authResult)
                                             throws IOException, ServletException {
 
-        AuthUser authUser = (AuthUser) authResult.getPrincipal();
+        PrincipalDetails authUser = (PrincipalDetails) authResult.getPrincipal();
 
         JwtProperties jwtProperties = new JwtProperties();
 
         //HMAC512
         //token을 만들 때 id와 email포함
         String jwtToken = JWT.create()
-                .withSubject("token") //아무거나 써도 됨.
+                .withSubject("token")
                 .withExpiresAt(new Date(System.currentTimeMillis()+(jwtProperties.tokenValidTime)))
                 .withClaim("id", authUser.getUser().getId())
                 .withClaim("email", authUser.getUser().getEmail())
-                .sign(Algorithm.HMAC512(jwtProperties.secretKey)); //고윳값
+                .sign(Algorithm.HMAC512(jwtProperties.secretKey));
 
 
         //header에서 값 포함
