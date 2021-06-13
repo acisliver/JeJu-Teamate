@@ -24,13 +24,20 @@ public class UserController {
 
     //회원가입
     @PostMapping("/api/sign-up")
-    public StatusDto signUp(UserDto userDto){
-//        User signedUpUser = userService.signUp(user);
-//        if(signedUpUser==null){
-//            return new StatusDto(HttpStatus.NO_CONTENT.value());
-//        }
-//        return new StatusDto(HttpStatus.OK.value());
-        return null;
+    public StatusDto signUp(@RequestBody UserDto userDto){
+        User user = new User();
+        user.setEmail(userDto.getEmail());
+        user.setPassword(userDto.getPassword());
+        user.setNickName(userDto.getNickName());
+        user.setJob(userDto.getJob());
+
+        System.out.println(userDto);
+
+        User signedUpUser = userService.signUp(user);
+        if(signedUpUser==null){
+            return new StatusDto(HttpStatus.NO_CONTENT.value());
+        }
+        return new StatusDto(HttpStatus.OK.value());
     }
 
     //로그인

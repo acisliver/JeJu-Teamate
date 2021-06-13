@@ -15,7 +15,7 @@
         </v-toolbar>
         <div class="pa-3">
           <v-text-field
-              v-model="userName"
+              v-model="eamil"
               label="이메일"
           >
           </v-text-field>
@@ -64,7 +64,7 @@ export default {
   data(){
     return {
       failLogin: false,
-      userName: '',
+      email: '',
       password: '',
       isShow: false,
     }

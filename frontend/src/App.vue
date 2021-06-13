@@ -34,5 +34,7 @@ export default {
 </script>
 
 <style>
-
+.the-view{
+  flex: 1;
+}
 </style>

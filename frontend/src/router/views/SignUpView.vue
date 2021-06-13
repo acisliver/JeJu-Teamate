@@ -30,6 +30,12 @@
             :type="isShow2 ? 'text' : 'password'"
             @click:append="isShow2 = !isShow2"
         ></v-text-field>
+        <v-text-field
+            v-model="nickName"
+            :rules="[rules.requiredRule]"
+            label="닉네임"
+            required
+        ></v-text-field>
         <v-select
             :items="jobs"
             v-model="job"
@@ -54,7 +60,7 @@
         <v-btn
             color="primary"
             text
-            @click="signup({email, password, job})"
+            @click="signup({email, password, nickName, job})"
         >
           제출
         </v-btn>
@@ -77,6 +83,7 @@ export default {
       rePassword: null,
       isShow1: false,
       isShow2: false,
+      nickName: null,
       jobs: ["프로그래머", "디자이너", "기획자"],
       job: null,
       rules: {
@@ -109,7 +116,7 @@ export default {
       axios.post("/api/sign-up",signupObj)
           .then(res => {
             this.$router.push({ name: "login"})
-            console.log(res.data)
+            console.log(res)
           })
           .catch(err => {
             console.log(err)

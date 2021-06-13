@@ -29,8 +29,8 @@ public class Team {
     @Column(nullable = false, length = 100)
     private String intro;
 
-    @OneToMany(mappedBy = "team")
-    List<User> teammate = new ArrayList<>();
+//    @OneToMany(mappedBy = "team")
+//    List<User> teammate = new ArrayList<>();
 
     @CreationTimestamp
     private Timestamp createDate;
