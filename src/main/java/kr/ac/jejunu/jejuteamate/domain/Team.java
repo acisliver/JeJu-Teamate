@@ -1,5 +1,6 @@
 package kr.ac.jejunu.jejuteamate.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -19,18 +20,26 @@ import java.util.List;
 public class Team {
 
     @Id
+    @JsonIgnore
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "TEAM_ID")
-    private int id;
+    private long id;
 
+    //팀명
     @Column(nullable = false, length = 100, unique = true)
     private String name;
 
-    @Column(nullable = false, length = 100)
+    //팀 소개
+    @Column
     private String intro;
 
-//    @OneToMany(mappedBy = "team")
-//    List<User> teammate = new ArrayList<>();
+    //웹, 안드로이드 등 분야
+    @Column
+    private String field;
+
+    //팀원
+    @OneToMany(mappedBy = "team")
+    List<User> teammate;
 
     @CreationTimestamp
     private Timestamp createDate;

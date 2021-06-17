@@ -98,10 +98,6 @@ export default {
   font-weight: bold;
   color: #2c3e50;
   padding: 10px;
-
-  &.router-link-exact-active {
-    color: rgba(25, 210, 188, 0.51);
-  }
 }
 
 //로그아웃

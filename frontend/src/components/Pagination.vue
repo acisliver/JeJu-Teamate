@@ -40,7 +40,7 @@
         </v-row>
       </v-container>
       <v-btn @click="clickWriteBtn" class="black--text white justify-end align-center">
-        글쓰기
+        팀 등록
       </v-btn>
     </div>
   </div>
@@ -78,7 +78,7 @@ export default {
   methods: {
     clickWriteBtn(){
       if(this.isLogin){
-        this.$router.push({ name: 'Write'+this.boardName })
+        this.$router.push({ name: 'Write' + this.boardName })
       }
       else{
         alert('로그인이 필요합니다')

@@ -17,6 +17,7 @@ public class User {
 
     @Id
     @JsonIgnore
+    @Column(name = "USER_ID")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
@@ -32,6 +33,10 @@ public class User {
 
     @Column(nullable = false, length = 100)
     private String job;
+
+    @ManyToOne
+    @JoinColumn(name = "TEAM_ID")
+    private Team team;
 
     @Enumerated(EnumType.STRING)
     private RoleType role;

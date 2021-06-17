@@ -77,8 +77,8 @@ export default {
             const statusOk = res.status
             if(statusOk === 200){
               console.log("성공")
-              console.log(res)
               localStorage.setItem("token", res.headers.token)
+              this.$store.dispatch('userStore/loginAction', statusOk, loginObj.userName)
               this.$router.push({name: 'home'})
             }
             else if(statusOk === 204){

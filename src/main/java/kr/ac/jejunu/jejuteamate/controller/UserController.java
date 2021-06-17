@@ -35,7 +35,7 @@ public class UserController {
         System.out.println(userDto);
 
         User signedUpUser = userService.signUp(user);
-        if(signedUpUser==null){
+        if(signedUpUser == null){
             return new StatusDto(HttpStatus.NO_CONTENT.value());
         }
         return new StatusDto(HttpStatus.OK.value());
