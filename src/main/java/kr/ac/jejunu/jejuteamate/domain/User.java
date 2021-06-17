@@ -41,6 +41,10 @@ public class User {
     @Enumerated(EnumType.STRING)
     private RoleType role;
 
+    @OneToOne
+    @JoinColumn(name = "id")
+    private Recruit recruit;
+
     @CreationTimestamp
     private Timestamp createDate;
 

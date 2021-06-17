@@ -1,14 +1,19 @@
 package kr.ac.jejunu.jejuteamate.controller;
 
+import kr.ac.jejunu.jejuteamate.config.security.user.PrincipalDetails;
 import kr.ac.jejunu.jejuteamate.domain.Team;
 import kr.ac.jejunu.jejuteamate.dto.StatusDto;
 import kr.ac.jejunu.jejuteamate.dto.TeamDto;
 import kr.ac.jejunu.jejuteamate.service.TeamService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+
+import java.util.List;
 
 @Controller
 public class TeamController {
@@ -16,8 +21,15 @@ public class TeamController {
     @Autowired
     TeamService teamService;
 
-    @PostMapping("/api/user/register-team")
-    public StatusDto registerTeam(@RequestBody TeamDto teamDto) {
+    @GetMapping("/api/find-team")
+    public List<Team> listTeams() {
+        return teamService.listTeams();
+    }
+
+    @PostMapping("/api/register-team")
+    public StatusDto registerTeam(@RequestBody TeamDto teamDto,
+                                  @AuthenticationPrincipal PrincipalDetails principalDetails) {
+
         Team team = new Team();
         team.setName(teamDto.getName());
         team.setIntro(teamDto.getIntro());
@@ -25,7 +37,7 @@ public class TeamController {
 
         System.out.println(teamDto);
 
-        Team registeredTeam = teamService.registerTeam(team);
+        Team registeredTeam = teamService.registerTeam(team, principalDetails.getUser());
 
         //팀 생성 실패
         if (registeredTeam == null){

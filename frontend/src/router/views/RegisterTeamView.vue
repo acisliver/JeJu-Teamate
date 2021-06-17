@@ -78,7 +78,7 @@ export default {
       }
 
       console.log(teamObj)
-      axios.post("/api/user/register-team",teamObj, config)
+      axios.post("/api/register-team",teamObj, config)
           .then(res => {
             alert("팀 등록 완료")
             console.log(res)
