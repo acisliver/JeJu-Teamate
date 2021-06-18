@@ -28,4 +28,18 @@ public class TeamService {
         teamRepository.save(team);
         return team;
     }
+
+    @Transactional
+    public Team findTeamByName(String teamName) {
+        return teamRepository.findByName(teamName);
+    }
+
+    @Transactional
+    public List<User> joinTeam(String teamName, User user){
+        Team team = teamRepository.findByName(teamName);
+        team.getTeammate().add(user);
+        teamRepository.save(team);
+        System.out.println(team.getTeammate().toString());
+        return team.getTeammate();
+    }
 }

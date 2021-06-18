@@ -6,6 +6,8 @@
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
   name: "RecruitBoardView",
   data() {
@@ -18,6 +20,13 @@ export default {
   },
   components: {
     FindTeam: () => import("../../components/Pagination")
+  },
+  mounted() {
+    axios.get("/api/find-team")
+        .then(res =>{
+          this.header = res.data
+          console.log(this.header)
+        })
   }
 }
 </script>

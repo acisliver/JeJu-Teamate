@@ -18,10 +18,10 @@
       <tr
           v-for="board in paginatedData"
           :key="board.id"
-          @click="clickReadBtn(board.id)"
+          @click="clickReadBtn(board.name)"
       >
-        <td class="text-left">{{ board.title }}</td>
-        <td class="text-right">{{ board.user.name }}</td>
+        <td class="text-left">{{ board.name }}</td>
+        <td class="text-right">{{ board.leader.nickName }}</td>
         <!--        <td class="text-right">{{ board.writeTime}}</td>-->
       </tr>
       </tbody>
@@ -84,14 +84,8 @@ export default {
         alert('로그인이 필요합니다')
       }
     },
-    clickReadBtn(id){
-      const boardName = this.boardName
-      let componentName = ''
-      if (boardName === 'FreeBoard') componentName = 'ReadFreeBoard'
-      else if(boardName === 'DebateBoard') componentName = 'ReadDebateBoard'
-      console.log(boardName)
-      console.log(componentName)
-      this.$router.push({ name: componentName ,params: { boardId: id}})
+    clickReadBtn(name){
+      this.$router.push({name: 'read-team', params: {teamName: name}})
     }
   },
   computed: {

@@ -13,6 +13,7 @@ VueRouter.prototype.push = function push(location) {
 
 //번들링
 const Home = () => import(/* webpackChunkName: "home" */ './views/HomeView')
+const ReadTeam = () => import(/* webpackChunkName: "recruitBoard" */ './views/ReadTeam')
 const FindTeam = () => import(/* webpackChunkName: "recruitBoard" */ './views/FindTeamView')
 const RegisterTeam = () => import(/* webpackChunkName: "registerTeam" */ './views/RegisterTeamView')
 const Login = () => import(/* webpackChunkName: "login" */ './views/LoginView')
@@ -61,6 +62,11 @@ const routes = [
     path: '/recruit',
     name: 'recruit',
     component: Recruit
+  },
+  {
+    path: '/read-team/:teamName',
+    name: 'read-team',
+    component: ReadTeam
   }
 ]
 

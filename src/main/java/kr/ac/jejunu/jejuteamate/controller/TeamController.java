@@ -2,16 +2,14 @@ package kr.ac.jejunu.jejuteamate.controller;
 
 import kr.ac.jejunu.jejuteamate.config.security.user.PrincipalDetails;
 import kr.ac.jejunu.jejuteamate.domain.Team;
+import kr.ac.jejunu.jejuteamate.domain.User;
 import kr.ac.jejunu.jejuteamate.dto.StatusDto;
 import kr.ac.jejunu.jejuteamate.dto.TeamDto;
 import kr.ac.jejunu.jejuteamate.service.TeamService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -24,6 +22,11 @@ public class TeamController {
     @GetMapping("/api/find-team")
     public List<Team> listTeams() {
         return teamService.listTeams();
+    }
+
+    @GetMapping("/api/read-team/{teamName}")
+    public Team readTeam(@PathVariable String teamName){
+        return teamService.findTeamByName(teamName);
     }
 
     @PostMapping("/api/register-team")
@@ -44,6 +47,14 @@ public class TeamController {
             return new StatusDto(HttpStatus.NO_CONTENT.value());
         }
         //팀 생성 성공
+        return new StatusDto(HttpStatus.OK.value());
+    }
+
+    @PostMapping("/api/register-team/{teamName}")
+    public StatusDto joinTeam(@PathVariable String teamName,
+                                  @AuthenticationPrincipal PrincipalDetails principalDetails){
+        User user = principalDetails.getUser();
+        teamService.joinTeam(teamName, user);
         return new StatusDto(HttpStatus.OK.value());
     }
 }
