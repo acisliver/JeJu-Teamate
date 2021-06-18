@@ -30,17 +30,18 @@
           <v-list class="loginedBtn">
             <v-list-item>
               <v-list-item-title>
-                <router-link :to="{
-                    name: 'my-page',
-                    // params: {
-                    //   username: userInfo.userName
-                    // }
-                }">마이페이지</router-link></v-list-item-title>
+                <router-link :to="{name: 'my-page'}">마이페이지</router-link>
+              </v-list-item-title>
+            </v-list-item>
+            <v-list-item>
+              <v-list-item-title>
+                <router-link :to="{name: 'recruit'}">이력서</router-link>
+              </v-list-item-title>
             </v-list-item>
             <v-list-item>
               <v-list-item-title
                   @click="$store.dispatch('userStore/logoutAction')"
-              ><router-link :to="{name: 'Home'}">로그아웃</router-link></v-list-item-title>
+              ><router-link :to="{name: 'home'}">로그아웃</router-link></v-list-item-title>
             </v-list-item>
           </v-list>
         </v-menu>

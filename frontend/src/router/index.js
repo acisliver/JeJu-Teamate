@@ -19,6 +19,7 @@ const Login = () => import(/* webpackChunkName: "login" */ './views/LoginView')
 const MyPage  = () => import(/* webpackChunkName: "login" */ './views/MyPageView')
 const SignUp = () => import(/* webpackChunkName: "login" */ './views/SignUpView')
 const TeamManagement = () => import(/* webpackChunkName: "login" */ './views/TeamManagementView')
+const Recruit = () => import(/* webpackChunkName: "login" */ './views/RecruitView')
 
 const routes = [
   {
@@ -55,6 +56,11 @@ const routes = [
     path: '/team-management',
     name: 'team-management',
     component: TeamManagement
+  },
+  {
+    path: '/recruit',
+    name: 'recruit',
+    component: Recruit
   }
 ]
 

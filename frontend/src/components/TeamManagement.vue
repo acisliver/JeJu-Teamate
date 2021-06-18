@@ -1,4 +1,4 @@
-<template>
+/<template>
   <div class="team-management row justify-center">
     <v-card style="width: 20rem; margin: 5rem;">
       <v-card-text>

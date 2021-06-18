@@ -19,4 +19,8 @@ public class Recruit {
 
     @Lob
     private String content;
+
+    @OneToOne
+    @JoinColumn(name = "USER_ID")
+    private User user;
 }

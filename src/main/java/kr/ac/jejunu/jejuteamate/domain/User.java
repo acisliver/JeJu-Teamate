@@ -1,6 +1,7 @@
 package kr.ac.jejunu.jejuteamate.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 //import org.springframework.security.core.GrantedAuthority;
@@ -41,8 +42,8 @@ public class User {
     @Enumerated(EnumType.STRING)
     private RoleType role;
 
-    @OneToOne
-    @JoinColumn(name = "id")
+    @JsonIgnoreProperties("user")
+    @OneToOne(mappedBy = "user")
     private Recruit recruit;
 
     @CreationTimestamp
