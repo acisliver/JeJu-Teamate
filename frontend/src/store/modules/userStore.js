@@ -7,7 +7,7 @@ export default {
             name: '',
             role: '',
             nickName: '',
-        }
+        },
     },
     getters:{
 
